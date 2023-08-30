@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 """Get-parse song data and show or save"""
 
 import argparse

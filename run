@@ -1,0 +1,22 @@
+#! /usr/bin/bash
+
+# Loop through Python versions from 3.0 to 3.12
+for MINOR in {0..12}; do
+    PY_PATH=$(type -P "python3.${MINOR}")
+    # Check if the Python version exists and is executable
+    if [ -x "$PY_PATH" ]; then
+        FOUND_VERSION="3.$MINOR"
+        PY_BIN_PATH="$PY_PATH"
+        continue
+    fi
+done
+
+if [ -f "${PY_BIN_PATH}" ]; then
+    printf "\x1b[38;05;160mNo suitable Python version found.\xib[00m\n" >&2
+    exit
+fi
+echo "Found Python $FOUND_VERSION at: $PY_BIN_PATH"
+
+# Run the python script
+MELOC=$(realpath "${1}")
+"${PY_BIN_PATH}" "${MELOC}/main.py" "${@}"
