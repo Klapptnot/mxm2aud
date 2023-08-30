@@ -118,8 +118,7 @@ def main():
             arpa.error("parameters -e/--embed -L/--lrc not allowed together")
         playlist = m3u2list(args.playlist)
         for audio in playlist:
-            # keyword = get_keyword(audio)
-            keyword = "Bon Jovi - Runaway"
+            keyword = get_keyword(audio)
             print(f"Working on {keyword}...")
             data = core.get_res(keyword=keyword)
             if data is None:
@@ -128,12 +127,9 @@ def main():
             if args.embed:
                 if insert_data(
                     file=audio,
-                    title=data["page"]["track"]["name"],
-                    artist=data["page"]["track"]["artistName"],
-                    album=data["page"]["track"]["albumName"],
                     genre=data["page"]["track"]["primaryGenres"][0]["name"],
                     lyrics=data["page"]["lyrics"]["lyrics"]["body"],
-                    comment=keyword,  # Save name and artist into comment if missed
+                    comment=keyword,  # Save name and artist in comment field
                 ):
                     print(f"Data inserted in {audio}, from (may not) '{keyword}'")
                 else:
