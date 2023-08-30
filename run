@@ -12,7 +12,7 @@ for MINOR in {0..12}; do
 done
 
 if [ -f "${PY_BIN_PATH}" ]; then
-    printf "\x1b[38;05;160mNo suitable Python version found.\xib[00m\n" >&2
+    printf "\x1b[38;05;160mNo suitable Python version found.\x1b[00m\n" >&2
     exit
 fi
 echo "Found Python $FOUND_VERSION at: $PY_BIN_PATH"
