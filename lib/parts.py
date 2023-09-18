@@ -87,21 +87,20 @@ class Song:
         if res.status != 200:
             raise DataNotAvailable("Unexpected status code")
         url_list = []
-        print(res.data.decode('utf-8'))
         # Get and sanitize url
         for url in re.findall(
-            r'<div class="yuRUbf"><div><a href="[^ ]*', res.data.decode("utf-8")
+            r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="[^ ]*', res.data.decode("utf-8")
         ):
             idx = url.find("/translation")
             if idx != -1:
                 url_list.append(
-                    re.sub(r'<div class="yuRUbf"><div><a href="', "", url[:idx]).rstrip(
+                    re.sub(r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="', "", url[:idx]).rstrip(
                         '"'
                     )
                 )
             else:
                 url_list.append(
-                    re.sub(r'<div class="yuRUbf"><div><a href="', "", url).rstrip('"')
+                    re.sub(r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="', "", url).rstrip('"')
                 )
         if not url_list:
             raise DataNotAvailable("Zero URLs were found")
