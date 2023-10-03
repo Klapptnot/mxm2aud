@@ -163,11 +163,13 @@ def main():
             lyrics = "This song has no lyrics"
         if data["page"]["lyrics"]["lyrics"]["restricted"] == 1:
             lyrics = "We do not have access to the lyrics"
+        key_color_coral = color.from_hex("#ed4c0c")
+        val_color_coral = color.from_hex("#dfe1ff")
         print(
-            f'Track: "{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}"\n'
-            f'Album: {data["page"]["track"]["albumName"]}\n'
-            f'Genre: {data["page"]["track"]["primaryGenres"][0]["name"]}\n'
-            f'Lyrics: {color.from_hex("#ed4c0c")}{lyrics}{color.RESET}\n'
+            f'{key_color_coral}Track{color.RESET}: "{val_color_coral}{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}{color.RESET}"\n'
+            f'{key_color_coral}Album{color.RESET}: {val_color_coral}{data["page"]["track"]["albumName"]}{color.RESET}\n'
+            f'{key_color_coral}Genre{color.RESET}: {val_color_coral}{data["page"]["track"]["primaryGenres"][0]["name"]}{color.RESET}\n'
+            f'{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n'
         )
     elif args.url:
         if not core.check_url(url=args.url):
@@ -182,11 +184,13 @@ def main():
             lyrics = "This song has no lyrics"
         if data["page"]["lyrics"]["lyrics"]["restricted"] == 1:
             lyrics = "We do not have access to the lyrics"
+        key_color_coral = color.from_hex("#ed4c0c")
+        val_color_coral = color.from_hex("#dfe1ff")
         print(
-            f'Track: "{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}"\n'
-            f'Album: {data["page"]["track"]["albumName"]}\n'
-            f'Genre: {data["page"]["track"]["primaryGenres"][0]["name"]}\n'
-            f'Lyrics: {color.from_hex("#ed4c0c")}{lyrics}{color.RESET}\n'
+            f'{key_color_coral}Track{color.RESET}: "{val_color_coral}{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}{color.RESET}"\n'
+            f'{key_color_coral}Album{color.RESET}: {val_color_coral}{data["page"]["track"]["albumName"]}{color.RESET}\n'
+            f'{key_color_coral}Genre{color.RESET}: {val_color_coral}{data["page"]["track"]["primaryGenres"][0]["name"]}{color.RESET}\n'
+            f'{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n'
         )
 
 
