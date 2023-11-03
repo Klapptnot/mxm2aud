@@ -18,7 +18,12 @@ def parse_args():
     arpa.add_argument(
         "-u", "--url", type=str, help="URL to use instead of searching one"
     )
-    arpa.add_argument("-S", "--show-urls", help="Show all URL found for a keyword", action="store_true")
+    arpa.add_argument(
+        "-S",
+        "--show-urls",
+        help="Show all URL found for a keyword",
+        action="store_true",
+    )
     plst_grp = arpa.add_argument_group(
         "Playlists",
         "Get the musics from a playlist, put lyrics inside the tags or lrc file",
@@ -108,7 +113,7 @@ def main():
     core = parts.Song(
         tries=args.tries,
         timeout=args.timeout,
-        cookies=os.environ['MXM_COOKIES'],
+        cookies=os.environ["MXM_COOKIES"],
         user_agent="Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0",
     )
     if args.playlist:
@@ -169,7 +174,7 @@ def main():
             f'{key_color_coral}Track{color.RESET}: "{val_color_coral}{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}{color.RESET}"\n'
             f'{key_color_coral}Album{color.RESET}: {val_color_coral}{data["page"]["track"]["albumName"]}{color.RESET}\n'
             f'{key_color_coral}Genre{color.RESET}: {val_color_coral}{data["page"]["track"]["primaryGenres"][0]["name"]}{color.RESET}\n'
-            f'{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n'
+            f"{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n"
         )
     elif args.url:
         if not core.check_url(url=args.url):
@@ -190,7 +195,7 @@ def main():
             f'{key_color_coral}Track{color.RESET}: "{val_color_coral}{data["page"]["track"]["name"]}" from "{data["page"]["track"]["artistName"]}{color.RESET}"\n'
             f'{key_color_coral}Album{color.RESET}: {val_color_coral}{data["page"]["track"]["albumName"]}{color.RESET}\n'
             f'{key_color_coral}Genre{color.RESET}: {val_color_coral}{data["page"]["track"]["primaryGenres"][0]["name"]}{color.RESET}\n'
-            f'{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n'
+            f"{key_color_coral}Lyrics{color.RESET}: {val_color_coral}{lyrics}{color.RESET}\n"
         )
 
 
