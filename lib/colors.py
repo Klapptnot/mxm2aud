@@ -4,14 +4,15 @@
 
 import re
 
+
 def fg(color_id: int = None):
     """
     Returns a foreground (text) color escape sequence
     Default: reset terminal style and color escape sequence
-    
+
     Args:
         color_id (int): The color code ID.
-    
+
     Returns:
         str: The ANSI escape code for the specified ID.
     """
@@ -19,14 +20,15 @@ def fg(color_id: int = None):
         color_id = "00"
     return f"\x1b[38;5;{color_id}m"
 
+
 def bg(color_id: int = None):
     """
     Returns a background color escape sequence
     Default: reset terminal style and color escape sequence
-    
+
     Args:
         color_id (int): The color code ID.
-    
+
     Returns:
         str: The ANSI escape code for the specified ID.
     """
@@ -34,14 +36,15 @@ def bg(color_id: int = None):
         color_id = "00"
     return f"\x1b[48;5;{color_id}m"
 
+
 def from_hex(hex_code: str, bg_color: bool = False):
     """
     Convert a hexadecimal color code to an ANSI escape code for color formatting.
-    
+
     Args:
         hex_code (str): The hexadecimal color code.
         bg_color (bool, optional): Specifies if the background color should be used.
-    
+
     Returns:
         str: The ANSI escape code for the specified color.
     """
@@ -63,15 +66,16 @@ def from_hex(hex_code: str, bg_color: bool = False):
         return f"\033[48;2;{r};{g};{b}m"
     return f"\033[38;2;{r};{g};{b}m"
 
+
 def from_rgb(rgb_code: str, bg_color: bool = False):
     """
     Convert an RGB color representation to an ANSI escape code for color formatting.
-    
+
     Args:
-        rgb_code (str): The RGB color representation in the formats: 
+        rgb_code (str): The RGB color representation in the formats:
                         "rgb(r, g, b)", "rgb(r,g,b)", "(r, g, b)", "(r,g,b)".
         bg_color (bool, optional): Specifies if the background color should be used.
-    
+
     Returns:
         str: The ANSI escape code for the specified color.
     """
@@ -90,6 +94,7 @@ def from_rgb(rgb_code: str, bg_color: bool = False):
     if bg_color:
         return f"\033[48;2;{r};{g};{b}m"
     return f"\033[38;2;{r};{g};{b}m"
+
 
 # UTILS
 RMLINE = "\x1b[0G\x1b[0K"
