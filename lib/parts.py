@@ -85,18 +85,18 @@ class Song:
             if res.status == 200:
                 break
         if res.status != 200:
-            raise DataNotAvailable("Unexpected status code")
+            raise DataNotAvailable(f"Unexpected status code: {res.status}")
         url_list = []
         # Get and sanitize url
         for url in re.findall(
-            r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="[^ ]*',
+            r'><a jsname="UWckNb" href="[^ ]*',
             res.data.decode("utf-8"),
         ):
             idx = url.find("/translation")
             if idx != -1:
                 url_list.append(
                     re.sub(
-                        r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="',
+                        r'><a jsname="UWckNb" href="',
                         "",
                         url[:idx],
                     ).rstrip('"')
@@ -104,7 +104,7 @@ class Song:
             else:
                 url_list.append(
                     re.sub(
-                        r'<div class="yuRUbf"><div><span jscontroller="msmzHf" jsaction="rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc"><a jsname="UWckNb" href="',
+                        r'<a jsname="UWckNb" href="',
                         "",
                         url,
                     ).rstrip('"')
@@ -129,7 +129,7 @@ class Song:
             if res.status == 200:
                 break
         if res.status != 200:
-            raise DataNotAvailable("Unexpected status code")
+            raise DataNotAvailable(f"Unexpected status code: {res.status}")
         match = re.search(
             r"(?<=var __mxmState = ).*(?=;</script>)", res.data.decode("utf-8")
         )
